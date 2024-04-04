@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  stackapi:
+    image: stackapi:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: stackapi
+    ports:
+      - "3306:3306"
